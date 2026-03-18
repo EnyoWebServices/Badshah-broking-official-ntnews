@@ -6,7 +6,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 
-<title>Trading Channel</title>
+<title>Join Telegram Channel</title>
 
 <style>
 body {
@@ -17,48 +17,37 @@ body {
     text-align:center;
 }
 
-/* HEADER */
+/* 🔴 HEADER (LIVE + MARKET SAME LINE) */
 .header {
     display:flex;
     justify-content:space-between;
+    align-items:center;
     padding:8px 12px;
     font-size:13px;
+    background:#000;
 }
 
-/* 🔴 LIVE */
+/* LIVE BLINK */
 .live {
     color:red;
     font-weight:bold;
-    animation:blink 1.2s infinite;
+    animation:blink 1s infinite;
 }
 @keyframes blink {
     50% {opacity:0.4;}
 }
 
-/* 👀 WATCH */
+/* MARKET TEXT */
+.market {
+    flex:1;
+    text-align:center;
+    font-size:13px;
+}
+
+/* WATCH */
 .watch {
     color:#0f0;
-}
-
-/* MARQUEE */
-.marquee {
-    overflow:hidden;
-    white-space:nowrap;
-    font-size:13px;
-    padding:6px 0;
-    border-top:1px solid #111;
-    border-bottom:1px solid #111;
-}
-
-.marquee span {
-    display:inline-block;
-    padding-left:100%;
-    animation:scroll 18s linear infinite;
-}
-
-@keyframes scroll {
-    from {transform:translateX(0);}
-    to {transform:translateX(-100%);}
+    font-size:12px;
 }
 
 /* PROFILE */
@@ -72,33 +61,37 @@ body {
     width:110px;
     height:110px;
     border-radius:50%;
-    border:3px solid #0a66c2;
+    border:3px solid gold;
+    box-shadow:0 0 20px gold;
 }
 
-/* VERIFIED BADGE */
+/* ✔ VERIFIED BADGE */
 .verified {
     position:absolute;
-    bottom:5px;
-    right:5px;
-    width:24px;
-    height:24px;
+    bottom:0;
+    right:0;
+    width:26px;
+    height:26px;
+    transform:translate(20%,20%);
 }
 
 /* TITLE */
 .title {
     font-size:26px;
     font-weight:700;
+    color:gold;
     margin-top:10px;
 }
 
 .sub {
-    color:#aaa;
+    font-size:14px;
+    color:#bbb;
 }
 
 /* STATS */
 .stats {
-    margin:10px;
     font-size:15px;
+    margin:10px;
 }
 
 /* DESC */
@@ -109,7 +102,7 @@ body {
 }
 
 .highlight {
-    color:#0a66c2;
+    color:gold;
     font-weight:700;
 }
 
@@ -123,7 +116,7 @@ body {
 }
 
 .tag {
-    border:1px solid #333;
+    border:1px solid gold;
     padding:6px 12px;
     border-radius:20px;
     font-size:12px;
@@ -148,13 +141,19 @@ body {
 .cta button {
     width:95%;
     margin:20px;
-    padding:15px;
+    padding:16px;
     font-size:16px;
     border:none;
-    border-radius:10px;
-    background:#0a66c2;
+    border-radius:12px;
+    background:linear-gradient(45deg,#ff2e2e,#ff6b6b);
     color:#fff;
     font-weight:bold;
+    animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {box-shadow:0 0 10px red;}
+    to {box-shadow:0 0 30px red;}
 }
 
 /* DISCLAIMER */
@@ -171,28 +170,28 @@ body {
 <!-- HEADER -->
 <div class="header">
     <div class="live">🔴 LIVE</div>
-    <div class="watch">👀 <span id="watchCount">1247</span></div>
-</div>
 
-<!-- MARQUEE -->
-<div class="marquee">
-    <span id="marketData"></span>
+    <div class="market" id="marketData">
+        Loading...
+    </div>
+
+    <div class="watch">👀 <span id="watchCount">1247</span></div>
 </div>
 
 <!-- PROFILE -->
 <div class="profile">
     <img src="https://telegram-ads.riyazshaikh.com/wp-content/uploads/2025/06/IMG-20250627-WA0004.jpg">
-    
-    <!-- VERIFIED SVG -->
-    <svg class="verified" viewBox="0 0 24 24" fill="#0a66c2">
+
+    <!-- VERIFIED ICON -->
+    <svg class="verified" viewBox="0 0 24 24" fill="#FFD700">
         <circle cx="12" cy="12" r="12"/>
-        <path d="M7 12l3 3 7-7" stroke="#fff" stroke-width="2" fill="none"/>
+        <path d="M7 12l3 3 7-7" stroke="#000" stroke-width="2" fill="none"/>
     </svg>
 </div>
 
 <!-- TITLE -->
 <div class="title">BADSHAH BROKING</div>
-<div class="sub">Official Trading Channel</div>
+<div class="sub">OFFICIAL TRADING CHANNEL</div>
 
 <!-- STATS -->
 <div class="stats">
@@ -208,52 +207,56 @@ body {
 
 <!-- TAGS -->
 <div class="tags">
-    <div class="tag">Stocks</div>
-    <div class="tag">Index</div>
+    <div class="tag">STOCKS</div>
+    <div class="tag">INDEX</div>
     <div class="tag">F&O</div>
-    <div class="tag">Crypto</div>
+    <div class="tag">CRYPTO</div>
 </div>
 
-<!-- BOXES -->
+<!-- BOX -->
 <div class="box-container">
-    <div class="box">10K+ Users</div>
-    <div class="box">Daily Updates</div>
-    <div class="box">Free Access</div>
+    <div class="box">10K+ USERS</div>
+    <div class="box">DAILY UPDATES</div>
+    <div class="box">FREE ACCESS</div>
 </div>
 
 <!-- CTA -->
 <div class="cta">
-    <button onclick="joinNow()">JOIN CHANNEL</button>
+    <button onclick="joinNow()">🚀 JOIN CHANNEL — IT'S FREE</button>
 </div>
 
 <!-- DISCLAIMER -->
 <div class="disclaimer">
-⚠️ Market investments are subject to risk. No guaranteed returns.
+⚠️ Market risk involved. No guaranteed returns.
 </div>
 
 <script>
 
-// 📈 REALISTIC MARKET DATA
-function generateMarket(){
-    let markets = ["BANKNIFTY","NIFTY","BTC"];
-    let html = "";
+// 📈 MARKET DATA INLINE
+function updateMarket(){
+    let data = [
+        {name:"BANKNIFTY"},
+        {name:"NIFTY"},
+        {name:"BTC"}
+    ];
 
-    markets.forEach(m=>{
+    let text = "";
+
+    data.forEach(m=>{
         let change = (Math.random()*2-1).toFixed(2);
         let up = change > 0;
 
-        html += `${m} <span style="color:${up?'#0f0':'#f00'}">
+        text += `${m.name} <span style="color:${up?'#0f0':'#f00'}">
         ${up?'▲':'▼'} ${Math.abs(change)}%
         </span> | `;
     });
 
-    document.getElementById("marketData").innerHTML = html;
+    document.getElementById("marketData").innerHTML = text;
 }
+setInterval(updateMarket,3000);
+updateMarket();
 
-setInterval(generateMarket,3000);
-generateMarket();
-
-// 👀 WATCH COUNT INCREASE
+// 👀 WATCH COUNT
 let watch = 1247;
 setInterval(()=>{
     watch += Math.floor(Math.random()*2);
