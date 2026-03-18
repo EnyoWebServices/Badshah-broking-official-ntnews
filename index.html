@@ -37,22 +37,26 @@ body{
 }
 @keyframes blink{50%{opacity:0.4;}}
 
-/* MARKET SCROLL */
+/* MARKET SMOOTH TICKER */
 .market{
   overflow:hidden;
-  white-space:nowrap;
   flex:1;
 }
 
-.market span{
-  display:inline-block;
-  padding-left:100%;
-  animation:scroll 18s linear infinite;
+.ticker{
+  display:flex;
+  width:max-content;
+  animation:tickerMove 20s linear infinite;
 }
 
-@keyframes scroll{
+.ticker span{
+  white-space:nowrap;
+  padding-right:40px;
+}
+
+@keyframes tickerMove{
   from{transform:translateX(0);}
-  to{transform:translateX(-100%);}
+  to{transform:translateX(-50%);}
 }
 
 /* WATCH */
@@ -76,11 +80,11 @@ body{
   box-shadow:0 0 20px gold;
 }
 
-/* PREMIUM VERIFIED */
+/* PREMIUM VERIFIED BADGE */
 .verified{
   position:absolute;
-  bottom:6px;
-  right:6px;
+  bottom:5px;
+  right:5px;
   width:30px;
   height:30px;
 }
@@ -106,7 +110,7 @@ body{
   font-weight:bold;
 }
 
-/* DESC (IMPROVED) */
+/* DESC */
 .desc{
   font-size:15px;
   padding:0 18px;
@@ -176,7 +180,7 @@ body{
   color:#ccc;
 }
 
-/* NOTIFICATION */
+/* POPUP */
 .popup{
   position:fixed;
   bottom:20px;
@@ -205,7 +209,10 @@ body{
   <div class="live">🔴 LIVE</div>
 
   <div class="market">
-    <span id="marketData"></span>
+    <div class="ticker">
+      <span id="marketData"></span>
+      <span id="marketDataClone"></span>
+    </div>
   </div>
 
   <div class="watch">👀 <span id="watchCount">1247</span></div>
@@ -215,16 +222,17 @@ body{
 <div class="profile">
   <img src="https://telegram-ads.riyazshaikh.com/wp-content/uploads/2025/06/IMG-20250627-WA0004.jpg">
 
-  <!-- PREMIUM VERIFIED -->
+  <!-- PREMIUM VERIFIED BADGE -->
   <svg class="verified" viewBox="0 0 24 24">
     <defs>
-      <linearGradient id="grad">
+      <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0%" stop-color="#00c6ff"/>
         <stop offset="100%" stop-color="#0072ff"/>
       </linearGradient>
     </defs>
-    <circle cx="12" cy="12" r="12" fill="url(#grad)"/>
-    <path d="M7 12l3 3 7-7" stroke="#fff" stroke-width="2" fill="none"/>
+    <circle cx="12" cy="12" r="11" fill="none" stroke="#00c6ff" stroke-width="2" opacity="0.6"/>
+    <circle cx="12" cy="12" r="9" fill="url(#badgeGrad)"/>
+    <path d="M7 12l3 3 7-7" stroke="#fff" stroke-width="2.2" fill="none"/>
   </svg>
 </div>
 
@@ -281,7 +289,7 @@ body{
 
 <script>
 
-// MARKET DATA SCROLL
+// MARKET DATA (SMOOTH LOOP)
 function updateMarket(){
   let items=["NIFTY","BANKNIFTY","BTC"];
   let text="";
@@ -289,13 +297,17 @@ function updateMarket(){
   items.forEach(i=>{
     let change=(Math.random()*1-0.5).toFixed(2);
     let up=change>0;
-    text+=`${i} <span style="color:${up?'#00ff88':'#ff4d4d'}">${up?'▲':'▼'} ${Math.abs(change)}%</span> | `;
+
+    text+=`${i} <span style="color:${up?'#00ff88':'#ff4d4d'}">
+    ${up?'▲':'▼'} ${Math.abs(change)}%
+    </span> | `;
   });
 
   document.getElementById("marketData").innerHTML=text;
+  document.getElementById("marketDataClone").innerHTML=text;
 }
-setInterval(updateMarket,5000);
 updateMarket();
+setInterval(updateMarket,6000);
 
 // WATCH COUNT
 let watch=1247;
