@@ -2,27 +2,12 @@
 <html lang="en">
 <head>
 
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1457383669364410');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1457383669364410&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Hindi Professional Font -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+
 <title>Join Telegram Channel</title>
 
 <style>
@@ -32,13 +17,29 @@ src="https://www.facebook.com/tr?id=1457383669364410&ev=PageView&noscript=1"
 
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #000, #0a0a0a, #111);
-    color: #fff;
-    text-align: center;
+    font-family: 'Segoe UI', 'Noto Sans Devanagari', sans-serif;
+    background: linear-gradient(135deg, #000, #0a0a0a, #111);
+    display: flex;
+    justify-content: center;
 }
 
-/* 🔴 LIVE TOP LEFT */
+/* 💎 GLASS CARD */
+.container {
+    width: 100%;
+    max-width: 420px;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.1);
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+/* 🔴 LIVE */
 .live {
     position: absolute;
     top: 8px;
@@ -49,48 +50,44 @@ body {
     z-index: 2;
 }
 
-/* 🔁 MARQUEE BACKGROUND */
+/* 🔁 PERFECT MARQUEE */
 .marquee {
-    position: relative;
-    z-index: 1;
-    background: #000;
-    padding: 6px 0;
+    overflow: hidden;
+    white-space: nowrap;
     font-size: 12px;
     color: #00ff88;
-    overflow: hidden;
+    margin-bottom: 10px;
 }
 
-.marquee span {
+.marquee div {
     display: inline-block;
     padding-left: 100%;
-    animation: scroll 12s linear infinite;
+    animation: marquee 15s linear infinite;
 }
 
-@keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
 
 /* 👑 PROFILE */
-.profile {
-    margin-top: 40px;
-    position: relative;
-    display: inline-block;
-}
-
 .profile img {
-    width: 100px;
-    height: 100px;
+    width: 95px;
+    height: 95px;
     border-radius: 50%;
     border: 3px solid gold;
-    box-shadow: 0 0 20px gold, 0 0 40px orange;
+    box-shadow: 0 0 20px gold;
+}
+
+.profile {
+    position: relative;
+    margin-top: 25px;
 }
 
 .king {
     position: absolute;
     bottom: 0;
     right: 0;
-    font-size: 20px;
     background: gold;
     border-radius: 50%;
     padding: 5px;
@@ -99,32 +96,33 @@ body {
 /* 🔥 TITLE */
 .title {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
     color: gold;
-    text-shadow: 0 0 8px gold;
-    margin-top: 10px;
+    text-shadow: 0 0 10px gold;
 }
 
 .sub {
-    font-size: 13px;
+    font-size: 12px;
     color: #bbb;
-    margin-bottom: 12px;
-    letter-spacing: 1px;
+    margin-bottom: 10px;
 }
 
 /* ✨ STATS */
 .stats {
     font-size: 13px;
-    margin: 10px 0;
-    font-weight: bold;
+    font-weight: 600;
 }
 
-/* 🧠 DESCRIPTION (PROFESSIONAL) */
+/* 🧠 HINDI PROFESSIONAL TEXT */
 .desc {
-    padding: 0 18px;
     font-size: 13px;
-    line-height: 1.6;
-    color: #ddd;
+    line-height: 1.7;
+    margin: 12px 0;
+}
+
+.highlight {
+    font-weight: 700;
+    color: #ffd700;
 }
 
 /* 🔘 TAGS */
@@ -132,13 +130,12 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
-    margin: 15px;
+    gap: 6px;
 }
 
 .tag {
     border: 1px solid gold;
-    padding: 6px 12px;
+    padding: 5px 10px;
     border-radius: 20px;
     font-size: 11px;
 }
@@ -146,22 +143,21 @@ body {
 /* 📦 BOXES */
 .box-container {
     display: flex;
-    gap: 8px;
-    padding: 0 10px;
-    margin: 15px 0;
+    gap: 6px;
+    margin: 12px 0;
 }
 
 .box {
     flex: 1;
-    padding: 10px;
     font-size: 11px;
+    padding: 8px;
+    background: rgba(255,255,255,0.05);
     border-radius: 10px;
-    background: #111;
 }
 
 /* 🚀 CTA */
 .cta button {
-    width: 92%;
+    width: 95%;
     padding: 14px;
     font-size: 15px;
     border-radius: 10px;
@@ -169,104 +165,75 @@ body {
     background: linear-gradient(45deg, #ff2e2e, #ff6b6b);
     color: white;
     font-weight: bold;
-    animation: glowBtn 1.5s infinite alternate;
+    animation: glow 1.5s infinite alternate;
 }
 
-@keyframes glowBtn {
+@keyframes glow {
     from { box-shadow: 0 0 10px red; }
-    to { box-shadow: 0 0 25px red, 0 0 50px orange; }
-}
-
-/* 🛡️ TRUST */
-.trust {
-    margin: 15px;
-    font-size: 12px;
-    color: #ccc;
-    line-height: 1.5;
+    to { box-shadow: 0 0 30px red, 0 0 60px orange; }
 }
 
 /* ⚠️ DISCLAIMER */
 .disclaimer {
     font-size: 10px;
-    color: #777;
-    padding: 12px;
-    line-height: 1.5;
+    color: #aaa;
+    margin-top: 10px;
 }
 
-/* 📱 RESPONSIVE */
-@media (min-width: 600px) {
-    .title { font-size: 28px; }
-    .desc { font-size: 14px; }
-    .box { font-size: 12px; }
-}
 </style>
 </head>
 
 <body>
 
-<!-- 🔴 LIVE -->
+<div class="container">
+
 <div class="live">🔴 LIVE</div>
 
-<!-- 🔁 MARQUEE -->
 <div class="marquee">
-      BANKNIFTY 48,240 ▼0.60% | BTC 67,420 ▲1.5% | NIFTY 22,100 ▲0.75% | LIVE TRADING UPDATES 🚀
-  </div>
+    <div>
+    BANKNIFTY 48,240 ▼0.60% | BTC 67,420 ▲1.5% | NIFTY 22,100 ▲0.75% | LIVE TRADING UPDATES 🚀
+    </div>
+</div>
 
-<!-- 👑 PROFILE -->
 <div class="profile">
     <img src="https://telegram-ads.riyazshaikh.com/wp-content/uploads/2025/06/IMG-20250627-WA0004.jpg">
     <div class="king">👑</div>
 </div>
 
-<!-- 🔥 TITLE -->
 <div class="title">BADSHAH BROKING</div>
 <div class="sub">OFFICIAL TRADING CHANNEL</div>
 
-<!-- ✨ STATS -->
 <div class="stats">
-    👥 <b>10,584+ Members</b> &nbsp; | &nbsp; 📊 <b>Market Insights</b>
+    👥 <b>10,584+ Members</b> | 📊 <b>Market Insights</b>
 </div>
 
-<!-- 🧠 PROFESSIONAL DESCRIPTION -->
 <div class="desc">
-    📊 हमारी टीम द्वारा मार्केट रिसर्च और एनालिसिस के आधार पर ट्रेडिंग इनसाइट्स प्रदान किए जाते हैं। <br>
-    💼 यह प्लेटफॉर्म केवल एजुकेशनल और इंफॉर्मेशनल उद्देश्य के लिए है। <br>
-    ⚡ उचित रिस्क मैनेजमेंट के साथ ट्रेडिंग करना आवश्यक है।
+    📊 <span class="highlight">मार्केट रिसर्च</span> और <span class="highlight">एनालिसिस</span> के आधार पर ट्रेडिंग इनसाइट्स प्रदान किए जाते हैं। <br>
+    💼 यह प्लेटफॉर्म केवल <span class="highlight">एजुकेशनल उद्देश्य</span> के लिए है। <br>
+    ⚡ <span class="highlight">रिस्क मैनेजमेंट</span> के साथ ट्रेड करना आवश्यक है।
 </div>
 
-<!-- 🔘 TAGS -->
 <div class="tags">
     <div class="tag">📊 STOCKS</div>
     <div class="tag">📉 INDEX</div>
     <div class="tag">💹 F&O</div>
     <div class="tag">🪙 CRYPTO</div>
-    <div class="tag">⚡ INTRADAY</div>
 </div>
 
-<!-- 📦 BOXES -->
 <div class="box-container">
-    <div class="box">👥 10K+ USERS</div>
-    <div class="box">📈 DAILY UPDATES</div>
-    <div class="box">🆓 FREE ACCESS</div>
+    <div class="box">👥 USERS</div>
+    <div class="box">📈 UPDATES</div>
+    <div class="box">🆓 FREE</div>
 </div>
 
-<!-- 🚀 CTA -->
 <div class="cta">
-    <button onclick="joinNow()">🚀 JOIN CHANNEL — IT'S FREE</button>
+    <button onclick="joinNow()">🚀 JOIN CHANNEL</button>
 </div>
 
-<!-- 🛡️ TRUST -->
-<div class="trust">
-    🛡️ Risk Management Guidance <br>
-    📊 Daily Market Analysis <br>
-    ⚡ Timely Trade Alerts
-</div>
-
-<!-- ⚠️ DISCLAIMER -->
 <div class="disclaimer">
-    ⚠️ Disclaimer: Stock market investments are subject to market risks. 
-    This platform does not provide any profit assurance. 
-    All content is for educational purposes only.
+⚠️ Trading involves risk. No profit guarantee. Educational purpose only.
+</div>
+
 </div>
 
 <script>
@@ -277,11 +244,3 @@ function joinNow() {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
