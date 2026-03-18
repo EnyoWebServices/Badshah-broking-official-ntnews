@@ -6,7 +6,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 
-<title>Join Telegram Channel</title>
+<title>Trading Channel</title>
 
 <style>
 body {
@@ -17,48 +17,51 @@ body {
     text-align:center;
 }
 
-/* 🔴 HEADER BAR */
+/* HEADER */
 .header {
-    background:#000;
-    padding:6px 10px;
-    font-size:13px;
     display:flex;
     justify-content:space-between;
-    align-items:center;
+    padding:8px 12px;
+    font-size:13px;
 }
 
+/* 🔴 LIVE */
 .live {
     color:red;
     font-weight:bold;
+    animation:blink 1.2s infinite;
+}
+@keyframes blink {
+    50% {opacity:0.4;}
 }
 
+/* 👀 WATCH */
 .watch {
     color:#0f0;
-    font-size:12px;
 }
 
-/* 🔁 MARQUEE */
+/* MARQUEE */
 .marquee {
     overflow:hidden;
     white-space:nowrap;
-    background:#000;
-    color:#00ff88;
     font-size:13px;
     padding:6px 0;
+    border-top:1px solid #111;
+    border-bottom:1px solid #111;
 }
 
-.marquee div {
+.marquee span {
     display:inline-block;
     padding-left:100%;
-    animation:marquee 15s linear infinite;
+    animation:scroll 18s linear infinite;
 }
 
-@keyframes marquee {
-    0% {transform:translateX(0);}
-    100% {transform:translateX(-100%);}
+@keyframes scroll {
+    from {transform:translateX(0);}
+    to {transform:translateX(-100%);}
 }
 
-/* 👑 PROFILE */
+/* PROFILE */
 .profile {
     margin-top:20px;
     position:relative;
@@ -69,54 +72,48 @@ body {
     width:110px;
     height:110px;
     border-radius:50%;
-    border:3px solid gold;
-    box-shadow:0 0 20px gold;
+    border:3px solid #0a66c2;
 }
 
-.king {
+/* VERIFIED BADGE */
+.verified {
     position:absolute;
-    bottom:0;
-    right:0;
-    transform:translate(25%,25%);
-    background:gold;
-    border-radius:50%;
-    padding:6px;
-    font-size:18px;
+    bottom:5px;
+    right:5px;
+    width:24px;
+    height:24px;
 }
 
-/* 🔥 TITLE */
+/* TITLE */
 .title {
     font-size:26px;
     font-weight:700;
-    color:gold;
     margin-top:10px;
 }
 
 .sub {
-    font-size:14px;
-    color:#bbb;
-    margin-bottom:10px;
+    color:#aaa;
 }
 
-/* 📊 STATS */
+/* STATS */
 .stats {
+    margin:10px;
     font-size:15px;
-    margin:10px 0;
 }
 
-/* 🧠 DESC */
+/* DESC */
 .desc {
     font-size:14px;
-    line-height:1.7;
     padding:0 20px;
+    line-height:1.7;
 }
 
 .highlight {
-    color:gold;
+    color:#0a66c2;
     font-weight:700;
 }
 
-/* 🔘 TAGS */
+/* TAGS */
 .tags {
     display:flex;
     flex-wrap:wrap;
@@ -126,18 +123,17 @@ body {
 }
 
 .tag {
-    border:1px solid gold;
+    border:1px solid #333;
     padding:6px 12px;
     border-radius:20px;
     font-size:12px;
 }
 
-/* 📦 BOXES */
+/* BOX */
 .box-container {
     display:flex;
     gap:8px;
     padding:0 10px;
-    margin:15px 0;
 }
 
 .box {
@@ -148,37 +144,20 @@ body {
     font-size:12px;
 }
 
-/* 🚀 CTA */
-.cta {
-    margin:20px;
-}
-
+/* CTA */
 .cta button {
     width:95%;
-    padding:16px;
+    margin:20px;
+    padding:15px;
     font-size:16px;
     border:none;
-    border-radius:12px;
-    background:linear-gradient(45deg,#ff2e2e,#ff6b6b);
+    border-radius:10px;
+    background:#0a66c2;
     color:#fff;
     font-weight:bold;
-    animation:glow 1.5s infinite alternate;
 }
 
-@keyframes glow {
-    from {box-shadow:0 0 10px red;}
-    to {box-shadow:0 0 30px red;}
-}
-
-/* 🛡️ TRUST */
-.trust {
-    font-size:13px;
-    line-height:1.6;
-    margin:15px;
-    color:#ccc;
-}
-
-/* ⚠️ DISCLAIMER */
+/* DISCLAIMER */
 .disclaimer {
     font-size:11px;
     color:#777;
@@ -192,72 +171,96 @@ body {
 <!-- HEADER -->
 <div class="header">
     <div class="live">🔴 LIVE</div>
-    <div class="watch">👀 1,247 watching</div>
+    <div class="watch">👀 <span id="watchCount">1247</span></div>
 </div>
 
 <!-- MARQUEE -->
 <div class="marquee">
-    <div>
-    BANKNIFTY 48,240 ▼0.60% | BTC 67,420 ▲1.5% | NIFTY 22,100 ▲0.75% | LIVE TRADING UPDATES 🚀
-    </div>
+    <span id="marketData"></span>
 </div>
 
 <!-- PROFILE -->
 <div class="profile">
     <img src="https://telegram-ads.riyazshaikh.com/wp-content/uploads/2025/06/IMG-20250627-WA0004.jpg">
-    <div class="king">👑</div>
+    
+    <!-- VERIFIED SVG -->
+    <svg class="verified" viewBox="0 0 24 24" fill="#0a66c2">
+        <circle cx="12" cy="12" r="12"/>
+        <path d="M7 12l3 3 7-7" stroke="#fff" stroke-width="2" fill="none"/>
+    </svg>
 </div>
 
 <!-- TITLE -->
 <div class="title">BADSHAH BROKING</div>
-<div class="sub">OFFICIAL TRADING CHANNEL</div>
+<div class="sub">Official Trading Channel</div>
 
 <!-- STATS -->
 <div class="stats">
-    👥 <b>10,584+ Members</b> | 📊 <b>Market Insights</b>
+    👥 <b>10,584+ Members</b> | 📊 Market Insights
 </div>
 
 <!-- DESC -->
 <div class="desc">
-    📊 <span class="highlight">मार्केट रिसर्च</span> और <span class="highlight">एनालिसिस</span> के आधार पर अपडेट <br>
+    📊 <span class="highlight">मार्केट रिसर्च</span> और <span class="highlight">एनालिसिस</span> आधारित अपडेट <br>
     💼 केवल <span class="highlight">एजुकेशनल उद्देश्य</span> <br>
     ⚡ <span class="highlight">रिस्क मैनेजमेंट</span> आवश्यक
 </div>
 
 <!-- TAGS -->
 <div class="tags">
-    <div class="tag">📊 STOCKS</div>
-    <div class="tag">📉 INDEX</div>
-    <div class="tag">💹 F&O</div>
-    <div class="tag">🪙 CRYPTO</div>
-    <div class="tag">⚡ INTRADAY</div>
+    <div class="tag">Stocks</div>
+    <div class="tag">Index</div>
+    <div class="tag">F&O</div>
+    <div class="tag">Crypto</div>
 </div>
 
 <!-- BOXES -->
 <div class="box-container">
-    <div class="box">👥 10K+ USERS</div>
-    <div class="box">📈 DAILY UPDATES</div>
-    <div class="box">🆓 FREE ACCESS</div>
+    <div class="box">10K+ Users</div>
+    <div class="box">Daily Updates</div>
+    <div class="box">Free Access</div>
 </div>
 
 <!-- CTA -->
 <div class="cta">
-    <button onclick="joinNow()">🚀 JOIN CHANNEL — IT'S FREE</button>
-</div>
-
-<!-- TRUST -->
-<div class="trust">
-    🛡️ Risk Management Guidance <br>
-    📊 Daily Market Analysis <br>
-    ⚡ Timely Trade Alerts
+    <button onclick="joinNow()">JOIN CHANNEL</button>
 </div>
 
 <!-- DISCLAIMER -->
 <div class="disclaimer">
-⚠️ Trading involves market risk. No profit guarantee. Educational purpose only.
+⚠️ Market investments are subject to risk. No guaranteed returns.
 </div>
 
 <script>
+
+// 📈 REALISTIC MARKET DATA
+function generateMarket(){
+    let markets = ["BANKNIFTY","NIFTY","BTC"];
+    let html = "";
+
+    markets.forEach(m=>{
+        let change = (Math.random()*2-1).toFixed(2);
+        let up = change > 0;
+
+        html += `${m} <span style="color:${up?'#0f0':'#f00'}">
+        ${up?'▲':'▼'} ${Math.abs(change)}%
+        </span> | `;
+    });
+
+    document.getElementById("marketData").innerHTML = html;
+}
+
+setInterval(generateMarket,3000);
+generateMarket();
+
+// 👀 WATCH COUNT INCREASE
+let watch = 1247;
+setInterval(()=>{
+    watch += Math.floor(Math.random()*2);
+    document.getElementById("watchCount").innerText = watch;
+},3000);
+
+// CTA
 function joinNow(){
     window.location.href="https://www.t.me/+W1SPLJ97dwZjOWI9";
 }
