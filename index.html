@@ -4,18 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;700&display=swap" rel="stylesheet">
 
 <title>Join Telegram Channel</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
 body{
   margin:0;
-  overflow-x:hidden; /* FIX SCROLL */
+  overflow-x:hidden;
   font-family:'Segoe UI','Noto Sans Devanagari',sans-serif;
   background:#000;
   color:#fff;
@@ -26,8 +24,7 @@ body{
 .header{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:8px 10px;
+  padding:8px;
   font-size:12px;
 }
 
@@ -36,24 +33,32 @@ body{
   color:red;
   font-weight:bold;
   animation:blink 1s infinite;
+  margin-right:6px;
 }
-@keyframes blink{
-  50%{opacity:0.4;}
+@keyframes blink{50%{opacity:0.4;}}
+
+/* MARKET SCROLL */
+.market{
+  overflow:hidden;
+  white-space:nowrap;
+  flex:1;
 }
 
-/* MARKET */
-.market{
-  flex:1;
-  text-align:center;
-  font-size:12px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+.market span{
+  display:inline-block;
+  padding-left:100%;
+  animation:scroll 18s linear infinite;
+}
+
+@keyframes scroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-100%);}
 }
 
 /* WATCH */
 .watch{
   color:#00ff88;
+  margin-left:6px;
 }
 
 /* PROFILE */
@@ -71,42 +76,47 @@ body{
   box-shadow:0 0 20px gold;
 }
 
-/* VERIFIED BADGE (OVERLAP PERFECT) */
+/* PREMIUM VERIFIED */
 .verified{
   position:absolute;
-  bottom:5px;
-  right:5px;
-  width:28px;
-  height:28px;
+  bottom:6px;
+  right:6px;
+  width:30px;
+  height:30px;
 }
 
 /* TITLE */
 .title{
-  font-size:24px;
-  font-weight:bold;
+  font-size:26px;
+  font-weight:700;
   color:gold;
-  text-shadow:0 0 8px gold;
+  text-shadow:0 0 10px gold;
   margin-top:10px;
 }
 
 .sub{
-  font-size:13px;
+  font-size:14px;
   color:#bbb;
 }
 
 /* STATS */
 .stats{
-  font-size:13px;
-  margin:10px;
+  font-size:15px;
+  margin:12px;
   font-weight:bold;
 }
 
-/* DESC */
+/* DESC (IMPROVED) */
 .desc{
-  font-size:13px;
+  font-size:15px;
   padding:0 18px;
-  line-height:1.6;
-  color:#ddd;
+  line-height:1.8;
+  color:#eee;
+}
+
+.highlight{
+  color:gold;
+  font-weight:700;
 }
 
 /* TAGS */
@@ -120,9 +130,9 @@ body{
 
 .tag{
   border:1px solid gold;
-  padding:6px 12px;
+  padding:7px 14px;
   border-radius:20px;
-  font-size:11px;
+  font-size:12px;
 }
 
 /* BOX */
@@ -135,8 +145,8 @@ body{
 
 .box{
   flex:1;
-  padding:10px;
-  font-size:11px;
+  padding:12px;
+  font-size:12px;
   border-radius:10px;
   background:#111;
 }
@@ -144,8 +154,8 @@ body{
 /* CTA */
 .cta button{
   width:92%;
-  padding:14px;
-  font-size:15px;
+  padding:16px;
+  font-size:16px;
   border-radius:10px;
   border:none;
   background:linear-gradient(45deg,#ff2e2e,#ff6b6b);
@@ -156,23 +166,34 @@ body{
 
 @keyframes glowBtn{
   from{box-shadow:0 0 10px red;}
-  to{box-shadow:0 0 25px red;}
+  to{box-shadow:0 0 30px red;}
 }
 
-/* TRUST POINTS (ICONS BACK) */
+/* TRUST */
 .trust{
   margin:15px;
-  font-size:12px;
+  font-size:13px;
   color:#ccc;
-  line-height:1.6;
+}
+
+/* NOTIFICATION */
+.popup{
+  position:fixed;
+  bottom:20px;
+  left:10px;
+  background:#111;
+  padding:10px 14px;
+  border-radius:8px;
+  font-size:12px;
+  box-shadow:0 0 10px #000;
+  display:none;
 }
 
 /* DISCLAIMER */
 .disclaimer{
-  font-size:10px;
+  font-size:11px;
   color:#777;
   padding:12px;
-  line-height:1.5;
 }
 </style>
 </head>
@@ -183,8 +204,8 @@ body{
 <div class="header">
   <div class="live">🔴 LIVE</div>
 
-  <div class="market" id="marketData">
-    NIFTY 22,100 ▲0.65% | BANKNIFTY 48,240 ▼0.32% | BTC 67,420 ▲1.2%
+  <div class="market">
+    <span id="marketData"></span>
   </div>
 
   <div class="watch">👀 <span id="watchCount">1247</span></div>
@@ -194,9 +215,15 @@ body{
 <div class="profile">
   <img src="https://telegram-ads.riyazshaikh.com/wp-content/uploads/2025/06/IMG-20250627-WA0004.jpg">
 
-  <!-- VERIFIED BADGE -->
-  <svg class="verified" viewBox="0 0 24 24" fill="#1DA1F2">
-    <circle cx="12" cy="12" r="12"/>
+  <!-- PREMIUM VERIFIED -->
+  <svg class="verified" viewBox="0 0 24 24">
+    <defs>
+      <linearGradient id="grad">
+        <stop offset="0%" stop-color="#00c6ff"/>
+        <stop offset="100%" stop-color="#0072ff"/>
+      </linearGradient>
+    </defs>
+    <circle cx="12" cy="12" r="12" fill="url(#grad)"/>
     <path d="M7 12l3 3 7-7" stroke="#fff" stroke-width="2" fill="none"/>
   </svg>
 </div>
@@ -212,9 +239,9 @@ body{
 
 <!-- DESC -->
 <div class="desc">
-  📊 मार्केट रिसर्च और एनालिसिस आधारित अपडेट <br>
-  💼 केवल एजुकेशनल उद्देश्य <br>
-  ⚡ रिस्क मैनेजमेंट आवश्यक
+  📊 <span class="highlight">मार्केट रिसर्च</span> और <span class="highlight">एनालिसिस</span> आधारित अपडेट <br>
+  💼 केवल <span class="highlight">एजुकेशनल उद्देश्य</span> <br>
+  ⚡ <span class="highlight">रिस्क मैनेजमेंट</span> आवश्यक
 </div>
 
 <!-- TAGS -->
@@ -244,20 +271,17 @@ body{
   ⚡ Timely Trade Alerts
 </div>
 
+<!-- POPUP -->
+<div class="popup" id="popup"></div>
+
 <!-- DISCLAIMER -->
 <div class="disclaimer">
 ⚠️ Stock market investments are subject to risks. No profit guarantee.
 </div>
 
 <script>
-// WATCH COUNT
-let watch=1247;
-setInterval(()=>{
-  watch+=Math.floor(Math.random()*2);
-  document.getElementById("watchCount").innerText=watch;
-},3000);
 
-// REALISTIC MARKET CHANGE (SUBTLE UPDATE)
+// MARKET DATA SCROLL
 function updateMarket(){
   let items=["NIFTY","BANKNIFTY","BTC"];
   let text="";
@@ -265,15 +289,39 @@ function updateMarket(){
   items.forEach(i=>{
     let change=(Math.random()*1-0.5).toFixed(2);
     let up=change>0;
-
-    text+=`${i} <span style="color:${up?'#00ff88':'#ff4d4d'}">
-    ${up?'▲':'▼'} ${Math.abs(change)}%
-    </span> | `;
+    text+=`${i} <span style="color:${up?'#00ff88':'#ff4d4d'}">${up?'▲':'▼'} ${Math.abs(change)}%</span> | `;
   });
 
   document.getElementById("marketData").innerHTML=text;
 }
 setInterval(updateMarket,5000);
+updateMarket();
+
+// WATCH COUNT
+let watch=1247;
+setInterval(()=>{
+  watch+=Math.floor(Math.random()*2);
+  document.getElementById("watchCount").innerText=watch;
+},3000);
+
+// POPUP NOTIFICATIONS
+let names=["Rahul","Amit","Vikas","Suresh","Rohit"];
+function showPopup(){
+  let name=names[Math.floor(Math.random()*names.length)];
+  let amount=Math.floor(Math.random()*50+10)*1000;
+
+  let popup=document.getElementById("popup");
+  popup.innerHTML=`💰 ${name} made profit ₹${amount}`;
+  popup.style.display="block";
+
+  setTimeout(()=>{popup.style.display="none";},3000);
+}
+setInterval(showPopup,7000);
+
+// CTA
+function joinNow(){
+  window.location.href="https://www.t.me/+W1SPLJ97dwZjOWI9";
+}
 </script>
 
 </body>
