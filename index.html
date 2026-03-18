@@ -12,233 +12,252 @@
 body {
     margin:0;
     font-family:'Segoe UI','Noto Sans Devanagari',sans-serif;
-    background:linear-gradient(135deg,#000,#0a0a0a,#111);
-    display:flex;
-    justify-content:center;
-}
-
-/* 💎 GLASS */
-.container {
-    max-width:420px;
-    width:100%;
-    margin:15px;
-    padding:15px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.1);
-    text-align:center;
+    background:#000;
     color:#fff;
-    position:relative;
+    text-align:center;
 }
 
-/* 🔴 LIVE */
+/* 🔴 HEADER BAR */
+.header {
+    background:#000;
+    padding:6px 10px;
+    font-size:13px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
 .live {
-    position:absolute;
-    top:8px;
-    left:10px;
-    font-size:12px;
     color:red;
     font-weight:bold;
-    animation:blink 1s infinite;
 }
-@keyframes blink {50%{opacity:0.3;}}
 
-/* 👀 VIEWERS */
-.viewers {
-    position:absolute;
-    top:8px;
-    right:10px;
-    font-size:11px;
+.watch {
     color:#0f0;
+    font-size:12px;
 }
 
 /* 🔁 MARQUEE */
 .marquee {
     overflow:hidden;
     white-space:nowrap;
-    font-size:12px;
+    background:#000;
     color:#00ff88;
+    font-size:13px;
+    padding:6px 0;
 }
+
 .marquee div {
     display:inline-block;
     padding-left:100%;
     animation:marquee 15s linear infinite;
 }
+
 @keyframes marquee {
-    0%{transform:translateX(0);}
-    100%{transform:translateX(-100%);}
+    0% {transform:translateX(0);}
+    100% {transform:translateX(-100%);}
 }
 
 /* 👑 PROFILE */
+.profile {
+    margin-top:20px;
+    position:relative;
+    display:inline-block;
+}
+
 .profile img {
-    width:95px;
-    height:95px;
+    width:110px;
+    height:110px;
     border-radius:50%;
     border:3px solid gold;
     box-shadow:0 0 20px gold;
 }
-.profile{margin-top:25px;position:relative;}
+
 .king {
     position:absolute;
     bottom:0;
     right:0;
+    transform:translate(25%,25%);
     background:gold;
     border-radius:50%;
-    padding:5px;
+    padding:6px;
+    font-size:18px;
 }
 
 /* 🔥 TITLE */
 .title {
-    font-size:24px;
+    font-size:26px;
     font-weight:700;
     color:gold;
-    text-shadow:0 0 10px gold;
+    margin-top:10px;
 }
 
 .sub {
-    font-size:12px;
+    font-size:14px;
     color:#bbb;
+    margin-bottom:10px;
 }
 
-/* 🔢 COUNTER */
-.counter {
-    font-size:14px;
+/* 📊 STATS */
+.stats {
+    font-size:15px;
     margin:10px 0;
 }
 
-/* 🧠 TEXT */
+/* 🧠 DESC */
 .desc {
-    font-size:13px;
+    font-size:14px;
     line-height:1.7;
+    padding:0 20px;
 }
+
 .highlight {
-    color:#ffd700;
+    color:gold;
     font-weight:700;
 }
 
+/* 🔘 TAGS */
+.tags {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    margin:15px;
+}
+
+.tag {
+    border:1px solid gold;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+/* 📦 BOXES */
+.box-container {
+    display:flex;
+    gap:8px;
+    padding:0 10px;
+    margin:15px 0;
+}
+
+.box {
+    flex:1;
+    background:#111;
+    padding:12px;
+    border-radius:10px;
+    font-size:12px;
+}
+
 /* 🚀 CTA */
+.cta {
+    margin:20px;
+}
+
 .cta button {
     width:95%;
-    padding:14px;
-    font-size:15px;
+    padding:16px;
+    font-size:16px;
     border:none;
-    border-radius:10px;
+    border-radius:12px;
     background:linear-gradient(45deg,#ff2e2e,#ff6b6b);
     color:#fff;
     font-weight:bold;
     animation:glow 1.5s infinite alternate;
 }
+
 @keyframes glow {
-    from{box-shadow:0 0 10px red;}
-    to{box-shadow:0 0 30px red;}
+    from {box-shadow:0 0 10px red;}
+    to {box-shadow:0 0 30px red;}
 }
 
-/* 📌 STICKY CTA */
-.sticky {
-    position:fixed;
-    bottom:0;
-    width:100%;
-    max-width:420px;
-}
-.sticky button {
-    width:100%;
-    padding:15px;
-    border:none;
-    background:red;
-    color:#fff;
-    font-size:16px;
-}
-
-/* 💰 POPUP */
-.popup {
-    position:fixed;
-    bottom:80px;
-    left:10px;
-    background:#111;
-    padding:10px;
-    border-radius:10px;
-    font-size:12px;
-    display:none;
+/* 🛡️ TRUST */
+.trust {
+    font-size:13px;
+    line-height:1.6;
+    margin:15px;
+    color:#ccc;
 }
 
 /* ⚠️ DISCLAIMER */
 .disclaimer {
-    font-size:10px;
-    margin-top:10px;
-    color:#aaa;
+    font-size:11px;
+    color:#777;
+    padding:15px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- HEADER -->
+<div class="header">
+    <div class="live">🔴 LIVE</div>
+    <div class="watch">👀 1,247 watching</div>
+</div>
 
-<div class="live">🔴 LIVE</div>
-<div class="viewers">👀 1,247 watching</div>
-
+<!-- MARQUEE -->
 <div class="marquee">
-<div>
-BANKNIFTY ▲0.80% | BTC ▲1.5% | NIFTY ▲0.75% | LIVE PROFITS RUNNING 🚀
-</div>
+    <div>
+    BANKNIFTY 48,240 ▼0.60% | BTC 67,420 ▲1.5% | NIFTY 22,100 ▲0.75% | LIVE TRADING UPDATES 🚀
+    </div>
 </div>
 
+<!-- PROFILE -->
 <div class="profile">
-<img src="https://telegram-ads.riyazshaikh.com/wp-content/uploads/2025/06/IMG-20250627-WA0004.jpg">
-<div class="king">👑</div>
+    <img src="https://telegram-ads.riyazshaikh.com/wp-content/uploads/2025/06/IMG-20250627-WA0004.jpg">
+    <div class="king">👑</div>
 </div>
 
+<!-- TITLE -->
 <div class="title">BADSHAH BROKING</div>
-<div class="sub">OFFICIAL CHANNEL</div>
+<div class="sub">OFFICIAL TRADING CHANNEL</div>
 
-<div class="counter">
-👥 <span id="count">10584</span>+ Members
+<!-- STATS -->
+<div class="stats">
+    👥 <b>10,584+ Members</b> | 📊 <b>Market Insights</b>
 </div>
 
+<!-- DESC -->
 <div class="desc">
-📊 <span class="highlight">मार्केट रिसर्च</span> और <span class="highlight">एनालिसिस</span> आधारित अपडेट <br>
-💼 केवल <span class="highlight">एजुकेशनल उद्देश्य</span> <br>
-⚡ <span class="highlight">रिस्क मैनेजमेंट</span> आवश्यक
+    📊 <span class="highlight">मार्केट रिसर्च</span> और <span class="highlight">एनालिसिस</span> के आधार पर अपडेट <br>
+    💼 केवल <span class="highlight">एजुकेशनल उद्देश्य</span> <br>
+    ⚡ <span class="highlight">रिस्क मैनेजमेंट</span> आवश्यक
 </div>
 
+<!-- TAGS -->
+<div class="tags">
+    <div class="tag">📊 STOCKS</div>
+    <div class="tag">📉 INDEX</div>
+    <div class="tag">💹 F&O</div>
+    <div class="tag">🪙 CRYPTO</div>
+    <div class="tag">⚡ INTRADAY</div>
+</div>
+
+<!-- BOXES -->
+<div class="box-container">
+    <div class="box">👥 10K+ USERS</div>
+    <div class="box">📈 DAILY UPDATES</div>
+    <div class="box">🆓 FREE ACCESS</div>
+</div>
+
+<!-- CTA -->
 <div class="cta">
-<button onclick="joinNow()">🚀 JOIN FREE NOW</button>
+    <button onclick="joinNow()">🚀 JOIN CHANNEL — IT'S FREE</button>
 </div>
 
+<!-- TRUST -->
+<div class="trust">
+    🛡️ Risk Management Guidance <br>
+    📊 Daily Market Analysis <br>
+    ⚡ Timely Trade Alerts
+</div>
+
+<!-- DISCLAIMER -->
 <div class="disclaimer">
-⚠️ Market risk involved. No profit guarantee.
-</div>
-
-</div>
-
-<!-- 💰 POPUP -->
-<div class="popup" id="popup"></div>
-
-<!-- 📌 STICKY CTA -->
-<div class="sticky">
-<button onclick="joinNow()">🔥 JOIN NOW</button>
+⚠️ Trading involves market risk. No profit guarantee. Educational purpose only.
 </div>
 
 <script>
-// 🔢 AUTO COUNTER
-let count = 10584;
-setInterval(()=>{
-    count += Math.floor(Math.random()*3);
-    document.getElementById("count").innerText = count;
-},2000);
-
-// 💰 FAKE POPUPS
-const names = ["Rahul","Amit","Neha","Vikas","Rohit"];
-setInterval(()=>{
-    let name = names[Math.floor(Math.random()*names.length)];
-    let amount = Math.floor(Math.random()*5000);
-    let popup = document.getElementById("popup");
-    popup.innerText = name + " earned ₹" + amount;
-    popup.style.display="block";
-    setTimeout(()=>popup.style.display="none",3000);
-},5000);
-
 function joinNow(){
     window.location.href="https://www.t.me/+W1SPLJ97dwZjOWI9";
 }
